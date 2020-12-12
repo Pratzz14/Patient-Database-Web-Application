@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Patients Database</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap here -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Fontawsm here for icons -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+
+    <!-- CSS stupf here -->
+    <style type="text/css">
+    	body{
+        	background-color: #84b6f0;   
+    	}
+    	.top{
+	        background-color: #bac964; 
+	        padding: 10px;
+	        padding-bottom: 1px;
+    	}
+	    .mid{
+	        background-color: #438a5e;  
+	        padding: 10px;
+	    }
+	    h1{
+        	font-size: 60px    
+    	}
+    </style>
+
+</head>
+
+
+<body>
+	<!-- The header part ie h1 SFIT hospital / h2 Patient Database -->
+	<!-- Common for all three webpages -->
+	<div class="top">   
+    	<h1 align=center>SFIT Hospital</h1>
+    </div>
+    <div class="mid">
+    	<h2 align=center>Patient Database</h2>
+    </div>
+    <hr>
+    <br>
+
+
+
+    <div class="container my-2">
+        <div class="card">
+            <div class="card-body">
+                <div th:switch="${patients}" class="container my-5">
+                    <p class="my-5">
+                        <a href="/patients/showForm" class="btn btn-primary"><i class="fas fa-user-plus ml-2"> Add Patient</i></a>
+                    </p>
+                    <div class="col-md-13">
+                        <div th:case="*">
+                            <table class="table table-striped table-responsive-md">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Date</th>
+                                        <th>Symptoms</th>
+                                        <th>Temperature</th>
+                                        <th>Email</th>
+                                        <th>Phone No</th>
+                                        <th>    </th>
+                                        <th>      </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="patient : ${patients}">
+                                        <td width=29% th:text="${patient.name}"></td>
+                                        <td width=5% th:text="${patient.age}"></td>
+                                        <td width=10% th:text="${patient.date}"></td>
+                                        <td width=10% th:text="${patient.symptoms}"></td>
+                                        <td width=7% th:text="${patient.temp}"></td>
+                                        <td width=26% th:text="${patient.email}"></td>
+                                        <td width=20% th:text="${patient.phoneNo}"></td>
+
+                                        <td><a th:href="@{/patients/edit/{id}(id=${patient.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"> Edit</i></a></td>
+
+                                        <td><a th:href="@{/patients/delete/{id}(id=${patient.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"> Del</i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
