@@ -1,7 +1,7 @@
 # Patient Database Web Application
  CRUD web application using Java + MySQL with Spring Boot Framework , Hibernate, Thymeleaf
 
-The working project video : https://www.youtube.com/watch?v=6wlW713EHdU
+The working project video : https://youtu.be/8dvFReL4dQ0
 
 --------------------------------------------------------------------------------------------------
 
